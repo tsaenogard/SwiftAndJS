@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+            <title>Document</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1, maximum-scale=1, user-scalable=no">
+        <style>
+            .btn-block {
+                display: block;
+                height: 45px;
+                line-height: 45px;
+                margin: 10px auto;
+                color: #fff;
+                background: #8bc53f;
+                border-radius: 10px;
+                text-align: center;
+                text-decoration: none;
+                font-size: 14px;
+            }
+            .content {
+                text-align: left;
+                font-size: 14px;
+                margin-bottom: 30px;
+            }
+        </style>
+    </head>
+    <body>
+        
+        <br><br><br>
+        
+        <div
+        class="btn-block"
+        onclick="WebViewJavascriptBridge.pay('9527')"
+        >js調用app的pay()</div>
+        
+        <div class="content">函數調用及參數傳遞</div>
+        
+        <div
+            class="btn-block"
+            onclick="WebViewJavascriptBridge.share({
+            'title': '特惠活動',
+            'description': '真心不騙',
+            'url': 'http://xxx.com.tw',
+            
+            })"
+            >js調用app的share()</div>
+        
+        <div class="content">函數調用及字典檔傳遞</div>
+        
+        <div
+            class="btn-block"
+            onclick="WebViewJavascriptBridge.showDialogMessage('優惠通知', '滿1000折100，現在立馬去搶')"
+            >js調用showDialog()顯示對話框</div>
+        
+        <div class="content">函數調用及多參數傳遞</div>
+        
+        <div
+            class="btn-block"
+            onclick="WebViewJavascriptBridge.callHandler('jsHandlerFunc')"
+            >js呼叫callHandler()方法，app處理完後傳回js</div>
+        <div
+            class="content"
+            id="js-content"
+            >App處理完資料，會顯示於此處</div>
+        
+        <script type="text/javascript">
+            function jsHandlerFunc(argument) {
+                document.getElementById('js-content').innerHTML = "App調用js方法，使用者名：" + argument['name'];
+            }
+        </script>
+    </body>
+</html>
